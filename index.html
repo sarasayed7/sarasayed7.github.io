@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Sayed — AI/ML Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0E14;
+    --bg-elev: #12161F;
+    --bg-card: #151A24;
+    --text: #E7ECF3;
+    --text-dim: #8C97A8;
+    --text-faint: #5B6577;
+    --accent: #4CD9C0;
+    --accent-amber: #F2A93B;
+    --border: #232B3A;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F7F7F4; --bg-elev: #FFFFFF; --bg-card: #FFFFFF;
+      --text: #14171F; --text-dim: #565F70; --text-faint: #8A93A3;
+      --border: #E2E4E8; --accent: #0E9A85; --accent-amber: #B4740E;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F7F7F4; --bg-elev: #FFFFFF; --bg-card: #FFFFFF;
+    --text: #14171F; --text-dim: #565F70; --text-faint: #8A93A3;
+    --border: #E2E4E8; --accent: #0E9A85; --accent-amber: #B4740E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; }
+  .brand { font-family: var(--font-mono); font-weight: 600; font-size: 15px; letter-spacing: -0.02em; }
+  .brand span { color: var(--accent); }
+  .navlinks { display: flex; gap: 28px; font-size: 14px; }
+  .navlinks a { color: var(--text-dim); }
+  .navlinks a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 620px) { .navlinks { display: none; } }
+
+  /* HERO */
+  .hero { padding: 88px 0 64px; border-bottom: 1px solid var(--border); }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  @media (max-width: 700px) { .hero-grid { grid-template-columns: 1fr; } .handviz { display: none; } }
+  .kicker { font-family: var(--font-mono); font-size: 13px; color: var(--accent); margin-bottom: 18px; }
+  h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 700; }
+  .role { font-size: 19px; color: var(--text-dim); margin-top: 14px; max-width: 46ch; }
+  .hero-links { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--font-mono); font-size: 13.5px;
+    padding: 10px 18px; border-radius: 4px; border: 1px solid var(--border);
+    color: var(--text); transition: border-color .15s, color .15s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); color: #06110E; border-color: var(--accent); }
+  .btn.primary:hover { color: #06110E; opacity: .88; }
+
+  /* SECTION */
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 32px; }
+  .sec-num { font-family: var(--font-mono); color: var(--text-faint); font-size: 14px; }
+  h2 { font-size: 24px; letter-spacing: -0.01em; }
+
+  /* EXPERIENCE */
+  .job { display: grid; grid-template-columns: 160px 1fr; gap: 24px; margin-bottom: 40px; }
+  @media (max-width: 620px) { .job { grid-template-columns: 1fr; gap: 6px; } }
+  .job-meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); line-height: 1.7; }
+  .job h3 { font-size: 17px; font-weight: 600; }
+  .job .company { color: var(--accent); font-weight: 500; }
+  .job ul { margin: 12px 0 0 18px; color: var(--text-dim); font-size: 15px; }
+  .job li { margin-bottom: 8px; }
+  .job li b { color: var(--text); font-weight: 600; }
+
+  /* PROJECTS */
+  .project { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 32px; margin-bottom: 24px; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+  .project h3 { font-size: 19px; }
+  .tag { font-family: var(--font-mono); font-size: 11px; padding: 4px 9px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-dim); white-space: nowrap; }
+  .tag.v2 { border-color: var(--accent); color: var(--accent); }
+  .project-sub { font-size: 13.5px; color: var(--text-faint); margin-bottom: 18px; }
+  .project p.desc { color: var(--text-dim); font-size: 15px; margin-bottom: 18px; }
+  .project p.desc b { color: var(--text); }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .chip { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-dim); background: var(--bg-elev); border: 1px solid var(--border); padding: 3px 9px; border-radius: 3px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 8px; }
+  @media (max-width: 560px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+  .metric { border-top: 1px solid var(--border); padding-top: 10px; }
+  .metric .num { font-family: var(--font-mono); font-size: 20px; color: var(--accent-amber); font-weight: 600; }
+  .metric .lbl { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; }
+  .project-links { margin-top: 20px; display: flex; gap: 16px; font-family: var(--font-mono); font-size: 13px; flex-wrap: wrap; }
+  .placeholder-note { font-size: 12.5px; color: var(--text-faint); font-style: italic; margin-top: 14px; }
+
+  /* RESEARCH */
+  .paper { display: grid; grid-template-columns: 90px 1fr; gap: 20px; padding: 20px 0; border-top: 1px solid var(--border); }
+  .paper:first-of-type { border-top: none; }
+  @media (max-width: 560px) { .paper { grid-template-columns: 1fr; gap: 8px; } }
+  .paper-status { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+  .paper-status.pending { color: var(--text-faint); }
+  .paper h4 { font-size: 16px; margin-bottom: 6px; }
+  .paper p { color: var(--text-dim); font-size: 14.5px; }
+  .paper .authors { font-size: 12.5px; color: var(--text-faint); margin-top: 8px; font-family: var(--font-mono); }
+
+  /* SKILLS */
+  .skillgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
+  @media (max-width: 560px) { .skillgrid { grid-template-columns: 1fr; } }
+  .skillcat h4 { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); margin-bottom: 10px; }
+  .skillcat p { color: var(--text-dim); font-size: 14.5px; }
+
+  /* EDU */
+  .edu h3 { font-size: 17px; }
+  .edu .meta { font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); margin-top: 6px; }
+
+  footer { padding: 48px 0 64px; }
+  footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .contact-links { display: flex; gap: 20px; font-family: var(--font-mono); font-size: 14px; }
+  footer .copy { font-size: 12.5px; color: var(--text-faint); margin-top: 24px; }
+
+  svg.landmark { opacity: .8; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">sara<span>@</span>sayed</div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">// AI / ML Developer</div>
+      <h1>Sara Sayed</h1>
+      <p class="role">I build real-time computer vision and LLM systems — from fine-tuned local models serving production traffic, to accessibility tools that read hand gestures live off a webcam.</p>
+      <div class="hero-links">
+        <a class="btn primary" href="https://github.com/sarasayed7" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="mailto:sarasayed5500@gmail.com">Email me</a>
+        <a class="btn" href="#work">See projects</a>
+      </div>
+    </div>
+    <div class="handviz" aria-hidden="true">
+      <svg width="180" height="200" viewBox="0 0 180 200" class="landmark">
+        <g stroke="var(--accent)" stroke-width="1.4" fill="none" opacity="0.9">
+          <path d="M90 190 L88 130 L60 60 L65 40" />
+          <path d="M88 130 L75 60 L78 35" />
+          <path d="M88 128 L90 55 L92 28" />
+          <path d="M90 128 L105 62 L110 38" />
+          <path d="M92 132 L120 90 L128 68" />
+          <path d="M60 60 L75 60 L90 55 L105 62 L120 90" />
+        </g>
+        <g fill="var(--accent-amber)">
+          <circle cx="90" cy="190" r="4"/>
+          <circle cx="88" cy="130" r="3.5"/>
+          <circle cx="65" cy="40" r="3"/>
+          <circle cx="78" cy="35" r="3"/>
+          <circle cx="92" cy="28" r="3"/>
+          <circle cx="110" cy="38" r="3"/>
+          <circle cx="128" cy="68" r="3"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="job-meta">Dec 2025 — Present</div>
+      <div>
+        <h3>AI Developer · <span class="company">LeMiCi</span></h3>
+        <ul>
+          <li>Architected a <b>domain-agnostic, multi-tenant memory fabric</b> (Redis for session cache, PostgreSQL for long-term semantic profiles) with strict context isolation and zero cross-user data leakage across high-concurrency LLM sessions; built procedural guardrails to intercept reasoning paths and stop prompt capitulation.</li>
+          <li>Built an AI-powered enterprise search pipeline (FastAPI, Qwen 2.5) generating dynamic React UI, with a context-compression algorithm cutting input payloads by <b>over 98%</b> (6,000+ → under 100 tokens) and frontend fallback handlers that eliminated schema-related rendering crashes entirely.</li>
+          <li>Designed and deployed a localized, fine-tuned Qwen model for parameter extraction using <b>LoRA, GGUF quantization, and Ollama</b>, serving structured JSON to a Go backend.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">Sep 2025 — Dec 2025</div>
+      <div>
+        <h3>AIML Intern · <span class="company">LeMiCi</span></h3>
+        <ul>
+          <li>Fine-tuned a local LLM to autonomously extract Minutes of Meeting from transcripts into structured JSON, cutting manual documentation time by an estimated <b>80%</b>.</li>
+          <li>Built an automated pipeline to parse and standardize unstructured franchise inquiries, speeding up data processing by <b>over 60%</b>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Featured projects</h2></div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Sign Language Interpreter — v1</h3>
+        <span class="tag">6th sem · minor project</span>
+      </div>
+      <div class="project-sub">Detection-based gesture recognition, published as an IEEE-format conference paper</div>
+      <p class="desc">Hearing loss affects roughly <b>430 million people worldwide</b>, and interpreters aren't always accessible or affordable. This project set out to translate hand gestures into text in real time, using nothing but a webcam — no wearables, no depth sensors. A four-person team built a custom dataset for six core gestures (Hello, I Love You, No, Yes, Thank You, Please), hand-annotated it in LabelImg, and trained a <b>YOLOv5</b> object-detection model to recognize gestures directly as bounding boxes in the video feed.</p>
+      <div class="stack">
+        <span class="chip">Python</span><span class="chip">YOLOv5</span><span class="chip">PyTorch</span><span class="chip">OpenCV</span><span class="chip">LabelImg</span>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num">85%</div><div class="lbl">Accuracy</div></div>
+        <div class="metric"><div class="num">89%</div><div class="lbl">Precision</div></div>
+        <div class="metric"><div class="num">85%</div><div class="lbl">Recall</div></div>
+        <div class="metric"><div class="num">87%</div><div class="lbl">mAP</div></div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/sarasayed7/sign-language-v1" target="_blank" rel="noopener">↳ View code on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Sign Language Interpreter — v2</h3>
+        <span class="tag v2">final year project · upgrade</span>
+      </div>
+      <div class="project-sub">Landmark-based recognition with a desktop GUI, built as the direct upgrade of v1</div>
+      <p class="desc">v2 rebuilt the same problem from a different angle: instead of detecting bounding boxes per frame (heavier, and capped at the six gestures it was trained on), it uses <b>MediaPipe</b> to extract 21 hand-landmark coordinates per frame, normalizes them for position invariance, and classifies the resulting feature vector with a <b>Random Forest</b> model — chosen over CNNs and SVMs for its balance of accuracy, speed, and small-dataset efficiency. The vocabulary grew to the <b>full alphabet, digits 0–9, and space (37 classes, 3,600 images)</b>, and the whole thing runs inside a <b>PyQt5</b> desktop app with a live gesture overlay, a running sentence buffer, and clear/reset/save controls — turning single-letter predictions into readable words in real time.</p>
+      <div class="stack">
+        <span class="chip">Python</span><span class="chip">MediaPipe</span><span class="chip">scikit-learn</span><span class="chip">OpenCV</span><span class="chip">PyQt5</span>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num">94.7%</div><div class="lbl">Accuracy</div></div>
+        <div class="metric"><div class="num">93.5%</div><div class="lbl">Precision</div></div>
+        <div class="metric"><div class="num">92.8%</div><div class="lbl">Recall</div></div>
+        <div class="metric"><div class="num">93.1%</div><div class="lbl">F1-score</div></div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/sarasayed7/sign-language-v2" target="_blank" rel="noopener">↳ View code on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Research papers</h2></div>
+
+    <div class="paper">
+      <div class="paper-status">Published<br>IEEE format</div>
+      <div>
+        <h4>Real-Time Sign Language Recognition System</h4>
+        <p>Documents the design and evaluation of the v1 YOLOv5-based gesture detector — dataset collection, annotation workflow, training methodology, and the resulting accuracy/precision/recall/mAP benchmarks.</p>
+        <div class="authors">S. Sayed, S. Shaikh, M. M. Shaikh, M. A. Shaikh</div>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-status pending">Research paper<br>publication status TBD</div>
+      <div>
+        <h4>Sign Language Recognition</h4>
+        <p>Covers the v2 system: the shift to MediaPipe landmark extraction and a Random Forest classifier, the expanded 37-class vocabulary, and the literature review comparing this approach against wearable-sensor and deep-learning alternatives.</p>
+        <div class="authors">S. Sayed, S. Shaikh, M. M. Shaikh, M. A. Shaikh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
+    <div class="skillgrid">
+      <div class="skillcat">
+        <h4>LANGUAGES &amp; TOOLS</h4>
+        <p>Python, SQL, Node.js, React, FastAPI, Redis, Git &amp; GitHub, Power BI, Excel</p>
+      </div>
+      <div class="skillcat">
+        <h4>GENERATIVE AI</h4>
+        <p>PyTorch, LangChain, RAG, LangGraph, LangSmith, LLM integration, MCP client &amp; server</p>
+      </div>
+      <div class="skillcat">
+        <h4>ML / DEEP LEARNING</h4>
+        <p>Fine-tuning, LoRA, PEFT, GGUF, Ollama, scikit-learn, OpenCV, CNNs, hyperparameter tuning</p>
+      </div>
+      <div class="skillcat">
+        <h4>LLMOPS &amp; CLOUD</h4>
+        <p>MLflow, experiment tracking, DVC, Docker, CI/CD, basic AWS &amp; GCP exposure</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Education</h2></div>
+    <div class="edu">
+      <h3>B.E. — Electronics &amp; Computer Science Engineering</h3>
+      <div class="meta">University of Mumbai · CGPA 9.69 · 2021–2025<br>Honours Program in Artificial Intelligence &amp; Machine Learning, 2023–2025</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="row">
+      <h2>Let's talk</h2>
+      <div class="contact-links">
+        <a href="mailto:sarasayed5500@gmail.com">sarasayed5500@gmail.com</a>
+        <a href="https://github.com/sarasayed7" target="_blank" rel="noopener">github.com/sarasayed7</a>
+      </div>
+    </div>
+    <div class="copy">Built by Sara Sayed.</div>
+  </div>
+</footer>
+
+</body>
+</html>
